@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaveTrack - Interactive Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .screen-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .screen-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .screen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .screen-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 15px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .notch {
+            width: 150px;
+            height: 25px;
+            background: #1a1a1a;
+            border-radius: 0 0 20px 20px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .status-bar {
+            padding: 35px 20px 10px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        
+        .screen-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid #e0e0e0;
+            background: white;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            color: #999;
+            cursor: pointer;
+        }
+        
+        .nav-item.active {
+            color: #667eea;
+        }
+        
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            background: #e0e0e0;
+            border-radius: 50%;
+        }
+        
+        .nav-item.active .nav-icon {
+            background: #667eea;
+        }
+        
+        /* Onboarding Styles */
+        .onboarding {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 30px;
+        }
+        
+        .onboarding-icon {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 30px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+        
+        .onboarding h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .onboarding p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .dots {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #d0d0d0;
+            border-radius: 50%;
+        }
+        
+        .dot.active {
+            background: #667eea;
+            width: 24px;
+            border-radius: 4px;
+        }
+        
+        /* Home Screen Styles */
+        .greeting {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .streak-card {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .streak-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .today-savings {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .today-savings .amount {
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .goal-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .goal-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .goal-amount {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+        
+        .add-entry-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+        }
+        
+        /* Entry Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .category-btn {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .category-btn:hover {
+            border-color: #667eea;
+        }
+        
+        .category-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .primary-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .secondary-btn {
+            width: 100%;
+            padding: 18px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        /* History Styles */
+        .search-bar {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .entry-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .entry-amount {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .entry-date {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .entry-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .entry-note {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Goals Screen */
+        .goals-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .goals-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .add-goal-btn {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .goal-detail-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .goal-detail-header {
+            margin-bottom: 20px;
+        }
+        
+        .goal-detail-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .goal-detail-period {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .goal-progress {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .goal-progress-amount {
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .goal-progress-label {
+            font-size: 14px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        /* Charts Screen */
+        .chart-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .chart-tab {
+            flex: 1;
+            padding: 12px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .chart-tab.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .chart-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .stat-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* Settings Screen */
+        .settings-section {
+            margin-bottom: 30px;
+        }
+        
+        .settings-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        
+        .settings-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .settings-item-label {
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .settings-item-value {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .screen-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 SaveTrack</h1>
+            <p>Interactive Wireframes - Click buttons below to navigate</p>
+        </div>
+        
+        <div class="screen-selector">
+            <button class="screen-btn active" onclick="showScreen('onboarding')">Onboarding</button>
+            <button class="screen-btn" onclick="showScreen('home')">Home</button>
+            <button class="screen-btn" onclick="showScreen('add-entry')">Add Entry</button>
+            <button class="screen-btn" onclick="showScreen('history')">History</button>
+            <button class="screen-btn" onclick="showScreen('goals')">Goals</button>
+            <button class="screen-btn" onclick="showScreen('charts')">Charts</button>
+            <button class="screen-btn" onclick="showScreen('settings')">Settings</button>
+        </div>
+        
+        <div class="phone-frame">
+            <div class="notch"></div>
+            
+            <!-- Onboarding Screen -->
+            <div id="onboarding" class="screen active">
+                <div class="status-bar">
+                    <span>9:41</span>
+                    <span>📶 🔋</span>
+                </div>
+                <div class="screen-content onboarding">
+                    <div class="onboarding-icon">💰</div>
+                    <h2>Welcome to SaveTrack</h2>
+                    <p>Track your daily money-saving efforts and watch your savings grow over time.</p>
+                    <div class="dots">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <button class="primary-btn">Get Started</button>
+                    <button class="secondary-btn">Skip</button>
+                </div>
+            </div>
+            
+            <!-- Home Screen -->
+            <div id="home" class="screen">
+                <div class="status-bar">
+                    <span>9:41</span>
+                    <span>📶 🔋</span>
+                </div>
+                <div class="screen-content">
+                    <div class="greeting">Good morning! 👋</div>
+                    
+                    <div class="streak-card">
+                        <div>🔥 Current Streak</div>
+                        <div class="streak-number">15 days</div>
+                        <div style="font-size: 14px; opacity: 0.9;">Longest: 23 days</div>
+                    </div>
+                    
+                    <div class="today-savings">
+                        <div style="font-size: 14px; color: #999; margin-bottom: 5px;">Today's Savings</div>
+                        <div class="amount">$47.50</div>
+                        <div style="font-size: 12px; color: #999;">3 entries today</div>
+                    </div>
+                    
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 15px; color: #333;">Active Goals</div>
+                    
+                    <div class="goal-card">
+                        <div class="goal-header">
+                            <span class="goal-name">Emergency Fund</span>
+                            <span class="goal-amount">$1,234 / $2,000</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 62%;"></div>
+                        </div>
+                        <div style="font-size: 12px; color: #999;">62% complete • 18 days remaining</div>
+                    </div>
+                    
+                    <div class="goal-card">
+                        <div class="goal-header">
+                            <span class="goal-name">Vacation Fund</span>
+                            <span class="goal-amount">$320 / $1,500</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 21%;"></div>
+                        </div>
+                        <div style="font-size: 12px; color: #999;">21% complete • 75 days remaining</div>
+                    </div>
+                    
+                    <div style="margin-bottom: 100px;"></div>
+                </div>
+                <div class="add-entry-btn">+</div>
+                <div class="bottom-nav">
+                    <div class="nav-item active">
+                        <div class="nav-icon"></div>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>History</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Goals</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Charts</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add Entry Screen -->
+            <div id="add-entry" class="screen">
+                <div class="status-bar">
+                    <span>9:41</span>
+                    <span>📶 🔋</span>
+                </div>
+                <div class="screen-content">
+                    <div class="screen-title">Add Entry</div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Amount Saved *</label>
+                        <input type="text" class="form-input" placeholder="$0.00" value="$25.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Category *</label>
+                        <div class="category-grid">
+                            <div class="category-btn">🛒 Skipped Purchase</div>
+                            <div class="category-btn selected">🏠 Cooked at Home</div>
+                            <div class="category-btn">🎟️ Used Coupon</div>
+                            <div class="category-btn">🚫 Canceled Sub</div>
+                            <div class="category-btn">💡 Cheaper Option</div>
+                            <div class="category-btn">➕ Other</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Note (Optional)</label>
+                        <input type="text" class="form-input" placeholder="What did you save on?" value="Made lunch instead of eating out">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Photo (Optional)</label>
+                        <button class="secondary-btn" style="margin-top: 0;">📷 Add Photo</button>
+                    </div>
+                    
+                    <button class="primary-btn">Save Entry</button>
+                </div>
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>History</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Goals</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Charts</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- History Screen -->
+            <div id="history" class="screen">
+                <div class="status-bar">
+                    <span>9:41</span>
+                    <span>📶 🔋</span>
+                </div>
+                <div class="screen-content">
+                    <div class="screen-title">History</div>
+                    
+                    <input type="text" class="search-bar" placeholder="🔍 Search entries...">
+                    
+                    <div style="font-size: 14px; font-weight: 600; color: #999; margin-bottom: 12px;">TODAY</div>
+                    
+                    <div class="entry-card">
+                        <div class="entry-header">
+                            <span class="entry-amount">$25.00</span>
+                            <span class="entry-date">2:30 PM</span>
+                        </div>
+                        <div class="entry-category">🏠 Cooked at Home</div>
+                        <div class="entry-note">Made lunch instead of eating out</div>
+                    </div>
+                    
+                    <div class="entry-card">
+                        <div class="entry-header">
+                            <span class="entry-amount">$15.00</span>
+                            <span class="entry-date">10:15 AM</span>
+                        </div>
+                        <div class="entry-category">🎟️ Used Coupon</div>
+                        <div class="entry-note">15% off grocery shopping</div>
+                    </div>
+                    
+                    <div class="entry-card">
+                        <div class="entry-header">
+                            <span class="entry-amount">$7.50</span>
+                            <span class="entry-date">7:45 AM</span>
+                        </div>
+                        <div class="entry-category">🏠 Cooked at Home</div>
+                        <div class="entry-note">Brewed coffee at home</div>
+                    </div>
+                    
+                    <div style="font-size: 14px; font-weight: 600; color: #999; margin: 20px 0 12px;">YESTERDAY</div>
+                    
+                    <div class="entry-card">
+                        <div class="entry-header">
+                            <span class="entry-amount">$50.00</span>
+                            <span class="entry-date">Jan 13</span>
+                        </div>
+                        <div class="entry-category">🛒 Skipped Purchase</div>
+                        <div class="entry-note">Decided not to buy new shoes</div>
+                    </div>
+                    
+                    <div class="entry-card">
+                        <div class="entry-header">
+                            <span class="entry-amount">$12.99</span>
+                            <span class="entry-date">Jan 13</span>
+                        </div>
+                        <div class="entry-category">🚫 Canceled Sub</div>
+                        <div class="entry-note">Canceled unused streaming service</div>
+                    </div>
+                    
+                    <div style="margin-bottom: 100px;"></div>
+                </div>
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item active">
+                        <div class="nav-icon"></div>
+                        <span>History</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Goals</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Charts</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Goals Screen -->
+            <div id="goals" class="screen">
+                <div class="status-bar">
+                    <span>9:41</span>
+                    <span>📶 🔋</span>
+                </div>
+                <div class="screen-content">
+                    <div class="goals-header">
+                        <div class="goals-title">Goals</div>
+                        <div class="add-goal-btn">+</div>
+                    </div>
+                    
+                    <div style="font-size: 14px; font-weight: 600; color: #999; margin-bottom: 12px;">ACTIVE GOALS</div>
+                    
+                    <div class="goal-detail-card">
+                        <div class="goal-detail-header">
+                            <div class="goal-detail-name">Emergency Fund</div>
+                            <div class="goal-detail-period">Monthly Goal</div>
+                        </div>
+                        <div class="progress-bar" style="margin-bottom: 15px;">
+                            <div class="progress-fill" style="width: 62%;"></div>
+                        </div>
+                        <div class="goal-progress">
+                            <div class="goal-progress-amount">$1,234</div>
+                            <div class="goal-progress-label">of $2,000 saved (62%)</div>
+                        </div>
+                        <div style="text-align: center; font-size: 14px; color: #999; margin-top: 10px;">
+                            18 days remaining
+                        </div>
+                    </div>
+                    
+                    <div class="goal-detail-card">
+                        <div class="goal-detail-header">
+                            <div class="goal-detail-name">Vacation Fund</div>
+                            <div class="goal-detail-period">Yearly Goal</div>
+                        </div>
+                        <div class="progress-bar" style="margin-bottom: 15px;">
+                            <div class="progress-fill" style="width: 21%;"></div>
+                        </div>
+                        <div class="goal-progress">
+                            <div class="goal-progress-amount">$320</div>
+                            <div class="goal-progress-label">of $1,500 saved (21%)</div>
+                        </div>
+                        <div style="text-align: center; font-size: 14px; color: #999; margin-top: 10px;">
+                            75 days remaining
+                        </div>
+                    </div>
+                    
+                    <div style="font-size: 14px; font-weight: 600; color: #999; margin: 25px 0 12px;">COMPLETED</div>
+                    
+                    <div class="goal-detail-card" style="opacity: 0.7;">
+                        <div class="goal-detail-header">
+                            <div class="goal-detail-name">Holiday Shopping 🎉</div>
+                            <div class="goal-detail-period">Completed Dec 2025</div>
+                        </div>
+                        <div class="progress-bar" style="margin-bottom: 15px;">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                        <div style="text-align: center; font-size: 16px; color: #67e a; font-weight: 600;">
+                            Goal Achieved! ✅
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 100px;"></div>
+                </div>
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>History</span>
+                    </div>
+                    <div class="nav-item active">
+                        <div class="nav-icon"></div>
+                        <span>Goals</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Charts</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts Screen -->
+            <div id="charts" class="screen">
+                <div class="status-bar">
+                    <span>9:41</span>
+                    <span>📶 🔋</span>
+                </div>
+                <div class="screen-content">
+                    <div class="screen-title">Analytics</div>
+                    
+                    <div class="chart-tabs">
+                        <button class="chart-tab active">Week</button>
+                        <button class="chart-tab">Month</button>
+                        <button class="chart-tab">Year</button>
+                    </div>
+                    
+                    <div class="chart-placeholder">
+                        📈 Line Chart<br>Savings Over Time
+                    </div>
+                    
+                    <div class="chart-placeholder">
+                        📊 Pie Chart<br>Savings by Category
+                    </div>
+                    
+                    <div style="font-size: 18px; font-weight: 600; margin: 20px 0 15px; color: #333;">Summary Stats</div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">$1,842</div>
+                            <div class="stat-label">Total Saved</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">$26.50</div>
+                            <div class="stat-label">Avg Per Day</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">142</div>
+                            <div class="stat-label">Total Entries</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">🏠</div>
+                            <div class="stat-label">Top Category</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 100px;"></div>
+                </div>
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>History</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Goals</span>
+                    </div>
+                    <div class="nav-item active">
+                        <div class="nav-icon"></div>
+                        <span>Charts</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Screen -->
+            <div id="settings" class="screen">
+                <div class="status-bar">
+                    <span>9:41</span>
+                    <span>📶 🔋</span>
+                </div>
+                <div class="screen-content">
+                    <div class="screen-title">Settings</div>
+                    
+                    <div class="settings-section">
+                        <div class="settings-section-title">PREFERENCES</div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Currency</span>
+                            <span class="settings-item-value">USD ($) ›</span>
+                        </div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Theme</span>
+                            <span class="settings-item-value">System ›</span>
+                        </div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Daily Reminder</span>
+                            <span class="settings-item-value">8:00 PM ›</span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <div class="settings-section-title">CATEGORIES</div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Manage Categories</span>
+                            <span class="settings-item-value">›</span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <div class="settings-section-title">DATA</div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Export Data</span>
+                            <span class="settings-item-value">›</span>
+                        </div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Import Data</span>
+                            <span class="settings-item-value">›</span>
+                        </div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Backup Reminder</span>
+                            <span class="settings-item-value">Monthly ›</span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <div class="settings-section-title">ABOUT</div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Version</span>
+                            <span class="settings-item-value">1.0.0</span>
+                        </div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Privacy Policy</span>
+                            <span class="settings-item-value">›</span>
+                        </div>
+                        <div class="settings-item">
+                            <span class="settings-item-label">Help & Support</span>
+                            <span class="settings-item-value">›</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 100px;"></div>
+                </div>
+                <div class="bottom-nav">
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Home</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>History</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Goals</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Charts</span>
+                    </div>
+                    <div class="nav-item active">
+                        <div class="nav-icon"></div>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.screen-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected screen
+            document.getElementById(screenId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
