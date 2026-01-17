@@ -6,7 +6,7 @@
 
 **A local-first mobile application designed to help users build consistent money-saving habits through daily logging, goal tracking, streak maintenance, and data visualization.**
 
-[![iOS](https://img.shields.io/badge/iOS-15.0+-blue.svg)](https://www.apple.com/ios/)
+[![iOS](https://img.shields.io/badge/iOS-17.0+-blue.svg)](https://www.apple.com/ios/)
 [![Swift](https://img.shields.io/badge/Swift-5.5+-orange.svg)](https://swift.org/)
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-3.0+-green.svg)](https://developer.apple.com/xcode/swiftui/)
 [![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
@@ -90,15 +90,15 @@ SaveTrack is a **privacy-first** iOS app that helps users track their daily mone
 ### Requirements
 
 - **Xcode**: 14.0 or later
-- **iOS**: 15.0 or later (16.0+ for full chart features)
+- **iOS**: 17.0 or later  
 - **Swift**: 5.5 or later
-- **WidgetKit**: iOS 14+ (for widgets)
+- **WidgetKit**: iOS 17+ (for widgets)
 
 ### Installation
 
 1. **Clone or download** this repository
 2. **Open** `SaveTrack.xcodeproj` in Xcode
-3. **Select** a simulator or device (iOS 15.0+)
+3. **Select** a simulator or device (iOS 17.0+)
 4. **Build and run** (⌘R)
 
 ### For Users
@@ -249,10 +249,7 @@ SaveTrack/
 
 ## 📱 iOS Version Support
 
-- **iOS 15+**: Core features
-- **iOS 16+**: Full Swift Charts support
-- **iOS 14+**: Widget support (with WidgetKit)
-
+- **iOS 17+**: all features
 ---
 
 ## 📦 Dependencies
