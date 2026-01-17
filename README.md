@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![SaveTrack Logo](screenshots/app-icon.png)
+![SaveTrack Logo](Images/appstore.png)
 
 **A local-first mobile application designed to help users build consistent money-saving habits through daily logging, goal tracking, streak maintenance, and data visualization.**
 
