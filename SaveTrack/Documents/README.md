@@ -1,12 +1,59 @@
 # SaveTrack - iOS App
 
-A local-first mobile application designed to help users build consistent money-saving habits through daily logging, goal tracking, streak maintenance, and data visualization.
+<div align="center">
 
-## Overview
+![SaveTrack Logo](screenshots/app-icon.png)
 
-SaveTrack is a privacy-first iOS app that helps users track their daily money-saving actions, set savings goals, maintain streaks, and visualize their progress—all with data stored locally on the device.
+**A local-first mobile application designed to help users build consistent money-saving habits through daily logging, goal tracking, streak maintenance, and data visualization.**
 
-## Features
+[![iOS](https://img.shields.io/badge/iOS-15.0+-blue.svg)](https://www.apple.com/ios/)
+[![Swift](https://img.shields.io/badge/Swift-5.5+-orange.svg)](https://swift.org/)
+[![SwiftUI](https://img.shields.io/badge/SwiftUI-3.0+-green.svg)](https://developer.apple.com/xcode/swiftui/)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
+
+</div>
+
+---
+
+## 📱 Screenshots
+
+<div align="center">
+
+### Onboarding
+| Welcome | Quick Logging | Privacy |
+|---------|---------------|---------|
+| ![Onboarding 1](screenshots/onboarding-1-welcome.png) | ![Onboarding 2](screenshots/onboarding-2-logging.png) | ![Onboarding 3](screenshots/onboarding-3-privacy.png) |
+
+### Main Screens
+| Home | History | Goals | Charts |
+|------|---------|-------|--------|
+| ![Home](screenshots/home-screen.png) | ![History](screenshots/history-screen.png) | ![Goals](screenshots/goals-screen.png) | ![Charts](screenshots/charts-screen.png) |
+
+### Features
+| Entry Form | Goal Celebration | Badges | Insights |
+|------------|------------------|--------|----------|
+| ![Entry](screenshots/entry-form.png) | ![Celebration](screenshots/goal-celebration.png) | ![Badges](screenshots/badges-screen.png) | ![Insights](screenshots/insights-screen.png) |
+
+</div>
+
+---
+
+## 🎯 Overview
+
+SaveTrack is a **privacy-first** iOS app that helps users track their daily money-saving actions, set savings goals, maintain streaks, and visualize their progress—all with data stored **locally on the device**.
+
+### Key Features
+
+- ✅ **Quick Entry Logging** - Log savings in under 30 seconds
+- ✅ **Goal Tracking** - Set and track monthly/yearly savings goals
+- ✅ **Streak System** - Build consistent habits with daily streak tracking
+- ✅ **Visual Analytics** - Charts and insights into your saving patterns
+- ✅ **Privacy First** - All data stored locally, no cloud sync required
+- ✅ **No Account Needed** - Start using immediately
+
+---
+
+## ✨ Features
 
 ### ✅ Phase 1 - Core Features (P0)
 
@@ -36,7 +83,36 @@ SaveTrack is a privacy-first iOS app that helps users track their daily money-sa
 - **Data Insights & Recommendations** - Personalized insights and recommendations
 - **Enhanced Streak Timeline** - Detailed streak history and comparison
 
-## Project Structure
+---
+
+## 🚀 Getting Started
+
+### Requirements
+
+- **Xcode**: 14.0 or later
+- **iOS**: 15.0 or later (16.0+ for full chart features)
+- **Swift**: 5.5 or later
+- **WidgetKit**: iOS 14+ (for widgets)
+
+### Installation
+
+1. **Clone or download** this repository
+2. **Open** `SaveTrack.xcodeproj` in Xcode
+3. **Select** a simulator or device (iOS 15.0+)
+4. **Build and run** (⌘R)
+
+### For Users
+
+1. Download from the App Store (when available)
+2. Open the app
+3. Complete the brief onboarding
+4. Start tracking your savings!
+
+📖 **See [USER_GUIDE.md](USER_GUIDE.md) for detailed user instructions**
+
+---
+
+## 📁 Project Structure
 
 ```
 SaveTrack/
@@ -84,6 +160,8 @@ SaveTrack/
 │   ├── NotificationManager.swift  # Local notifications (Phase 2)
 │   ├── InsightsEngine.swift       # Insights generation (Phase 3)
 │   └── ShareableImageGenerator.swift # Image generation (Phase 3)
+├── Utilities/
+│   └── CurrencyFormatter.swift    # Currency formatting utility
 ├── SaveTrackWidget/
 │   └── SaveTrackWidget.swift      # Widget extension (Phase 3)
 └── SaveTrackTests/
@@ -95,28 +173,9 @@ SaveTrack/
     └── Phase3IntegrationTests.swift    # Phase 3 integration tests
 ```
 
-## Requirements
+---
 
-- **Xcode**: 14.0 or later
-- **iOS**: 15.0 or later (16.0+ for full chart features)
-- **Swift**: 5.5 or later
-- **WidgetKit**: iOS 14+ (for widgets)
-
-## Installation
-
-1. Open the project in Xcode
-2. Select a simulator or device (iOS 15.0+)
-3. Build and run (⌘R)
-
-### Widget Setup (Optional)
-
-To enable home screen widgets:
-1. Create a Widget Extension target in Xcode
-2. Add `SaveTrackWidget/SaveTrackWidget.swift` to the extension
-3. Configure App Groups if needed for data sharing
-4. Build and run
-
-## Architecture
+## 🏗️ Architecture
 
 ### MVVM Pattern
 
@@ -131,59 +190,9 @@ To enable home screen widgets:
 - **UserDefaults**: App settings and templates
 - **No Cloud Sync**: All data stays on device (privacy-first)
 
-## Key Features Details
+---
 
-### Daily Entry Logging
-- Quick entry form (under 30 seconds)
-- Multiple entries per day
-- Pre-defined categories with emoji icons
-- Custom categories support
-- Optional notes and photos (Phase 3)
-
-### Goal Tracking
-- Monthly or yearly goals
-- Visual progress bars
-- Automatic goal updates
-- Multiple concurrent goals
-- Goal achievement celebrations
-
-### Streak System
-- Consecutive day tracking
-- Milestone badges (7, 30, 60, 100, 365 days)
-- Longest streak tracking
-- Streak timeline visualization
-- Badge notifications
-
-### Analytics & Charts
-- Line chart: Savings over time
-- Pie chart: Category breakdown
-- Bar chart: Monthly comparisons
-- Week-over-week comparisons
-- Trend analysis with growth metrics
-- Summary statistics
-
-### Insights & Recommendations
-- Personalized insights based on patterns
-- Streak milestone alerts
-- Goal progress recommendations
-- Best day of week analysis
-- Top category identification
-- Consistency recommendations
-
-### Social Sharing
-- Goal achievement images
-- Badge milestone images
-- Streak milestone images
-- Monthly summary images
-- Share to all iOS destinations
-
-### Entry Templates
-- Save common entries as templates
-- Quick entry from templates
-- Template management
-- Pre-filled forms
-
-## Testing
+## 🧪 Testing
 
 ### Running Tests
 
@@ -205,16 +214,20 @@ To enable home screen widgets:
 - **Model Tests**: Data model validation
 - **ViewModel Tests**: Business logic testing
 
-## Data Privacy
+---
 
-- ✅ All data stored locally on device
-- ✅ No cloud synchronization
-- ✅ No user accounts required
-- ✅ No analytics or tracking
-- ✅ Export/Import for user control
-- ✅ Optional device-level encryption
+## 🔒 Privacy & Security
 
-## Performance
+- ✅ **All data stored locally** on device
+- ✅ **No cloud synchronization**
+- ✅ **No user accounts required**
+- ✅ **No analytics or tracking**
+- ✅ **Export/Import for user control**
+- ✅ **Optional device-level encryption**
+
+---
+
+## ⚡ Performance
 
 - App launch time: < 2 seconds
 - Entry save time: Instant
@@ -222,7 +235,9 @@ To enable home screen widgets:
 - Efficient database queries
 - Optimized chart rendering
 
-## Accessibility
+---
+
+## ♿ Accessibility
 
 - ✅ VoiceOver support
 - ✅ Dynamic Type support
@@ -230,13 +245,17 @@ To enable home screen widgets:
 - ✅ Color contrast compliance
 - ✅ Semantic colors
 
-## iOS Version Support
+---
+
+## 📱 iOS Version Support
 
 - **iOS 15+**: Core features
 - **iOS 16+**: Full Swift Charts support
 - **iOS 14+**: Widget support (with WidgetKit)
 
-## Dependencies
+---
+
+## 📦 Dependencies
 
 - **SwiftUI**: Native UI framework
 - **SQLite3**: Database (via native API)
@@ -245,9 +264,19 @@ To enable home screen widgets:
 - **UserNotifications**: Local notifications
 - **PhotosUI**: Photo selection (Phase 3)
 
-No external package dependencies required.
+**No external package dependencies required.**
 
-## Development Status
+---
+
+## 📚 Documentation
+
+- **[USER_GUIDE.md](USER_GUIDE.md)** - Complete user guide with screenshots
+- **[TEST_SUMMARY.md](TEST_SUMMARY.md)** - Testing documentation
+- **[SaveTrack_iPhone_Design_Document.md](SaveTrack_iPhone_Design_Document.md)** - Technical design document
+
+---
+
+## 🗺️ Development Status
 
 ### ✅ Completed Phases
 
@@ -264,16 +293,35 @@ No external package dependencies required.
 - Optional cloud sync
 - Goal templates
 
-## License
+---
+
+## 📄 License
 
 Copyright © 2026 SaveTrack. All rights reserved.
 
-## Support
+---
 
-For issues, questions, or contributions, please refer to the project documentation.
+## 🤝 Contributing
+
+This is a private project. For issues, questions, or contributions, please refer to the project documentation.
 
 ---
+
+## 📞 Support
+
+For additional help:
+- Check [USER_GUIDE.md](USER_GUIDE.md) for user instructions
+- Review the in-app onboarding
+- Contact support through the App Store listing
+
+---
+
+<div align="center">
 
 **Version**: 1.0.0  
 **Last Updated**: January 2026  
 **Status**: Production Ready
+
+Made with ❤️ using SwiftUI
+
+</div>
