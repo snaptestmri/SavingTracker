@@ -22,17 +22,17 @@
 ### Onboarding
 | Welcome | Quick Logging | Privacy |
 |---------|---------------|---------|
-| ![Onboarding 1](screenshots/onboarding-1-welcome.png) | ![Onboarding 2](screenshots/onboarding-2-logging.png) | ![Onboarding 3](screenshots/onboarding-3-privacy.png) |
+| ![Onboarding 1](SaveTrack/Images/StartScreen.png) | ![Onboarding 2](SaveTrack/Images/StartScreen2.png) | ![Onboarding 3](SaveTrack/Images/StartScreen3.png) |
 
 ### Main Screens
-| Home | History | Goals | Charts |
+| Home | History | Goals | Analytics |
 |------|---------|-------|--------|
-| ![Home](screenshots/home-screen.png) | ![History](screenshots/history-screen.png) | ![Goals](screenshots/goals-screen.png) | ![Charts](screenshots/charts-screen.png) |
+| ![Home](SaveTrack/Images/Home.png) | ![History](SaveTrack/Images/History.png) | ![Goals](SaveTrack/Images/Goals.png) | ![Charts](SaveTrack/Images/Analytics.png) |
 
 ### Features
-| Entry Form | Goal Celebration | Badges | Insights |
+| Entry Form | Goal Addition | Badges | Insights |
 |------------|------------------|--------|----------|
-| ![Entry](screenshots/entry-form.png) | ![Celebration](screenshots/goal-celebration.png) | ![Badges](screenshots/badges-screen.png) | ![Insights](screenshots/insights-screen.png) |
+| ![Entry](SaveTrack/Images/AddSavingEntry.png) | ![Goal](SaveTrack/Images/Goals.png) | ![Badges](SaveTrack/Images/Badges.png) | ![Insights](SaveTrack/Images/Insights.png) |
 
 </div>
 
